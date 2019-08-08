@@ -19,12 +19,7 @@ package com.urswolfer.gerrit.client.rest.http.projects;
 import com.google.common.base.Strings;
 import com.google.gerrit.extensions.api.access.ProjectAccessInfo;
 import com.google.gerrit.extensions.api.access.ProjectAccessInput;
-import com.google.gerrit.extensions.api.projects.BranchApi;
-import com.google.gerrit.extensions.api.projects.BranchInfo;
-import com.google.gerrit.extensions.api.projects.ProjectApi;
-import com.google.gerrit.extensions.api.projects.ProjectInput;
-import com.google.gerrit.extensions.api.projects.TagApi;
-import com.google.gerrit.extensions.api.projects.TagInfo;
+import com.google.gerrit.extensions.api.projects.*;
 import com.google.gerrit.extensions.common.ProjectInfo;
 import com.google.gerrit.extensions.restapi.NotImplementedException;
 import com.google.gerrit.extensions.restapi.RestApiException;
@@ -93,6 +88,11 @@ public class ProjectApiRestClient extends ProjectApi.NotImplemented implements P
     @Override
     public BranchApi branch(String ref) throws RestApiException {
         return new BranchApiRestClient(gerritRestClient, branchInfoParser, this, ref);
+    }
+
+    @Override
+    public CommitApi commit(String commit) throws RestApiException {
+        return new CommitApiRestClient(gerritRestClient, this, commit);
     }
 
     private List<BranchInfo> getBranches(ListRefsRequest<BranchInfo> lbr) throws RestApiException {

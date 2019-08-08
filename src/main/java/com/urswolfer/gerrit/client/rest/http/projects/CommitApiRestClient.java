@@ -9,13 +9,13 @@ import com.urswolfer.gerrit.client.rest.http.GerritRestClient;
 
 /**
  * @author lee.lian
- * @version 
- * @desc 
  */
 public class CommitApiRestClient extends CommitApi.NotImplemented implements CommitApi{
 	
 	private GerritRestClient gerritRestClient;
+
 	private ProjectApiRestClient projectApiRestClient;
+
 	private String commit;
 	
 	public CommitApiRestClient(GerritRestClient gerritRestClient, ProjectApiRestClient projectApiRestClient, String commit) {
